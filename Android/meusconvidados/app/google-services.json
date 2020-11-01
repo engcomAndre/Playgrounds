@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1010258353777",
+    "firebase_url": "https://meus-convidados-30532.firebaseio.com",
+    "project_id": "meus-convidados-30532",
+    "storage_bucket": "meus-convidados-30532.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010258353777:android:06ee303d8da40a00",
+        "android_client_info": {
+          "package_name": "com.cursos.andre.meusconvidados"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010258353777-iu6924bjld091c6f9cbse7qe5jcm4vh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRSMGOo9JPuvKVLl1JfJ4MIwpXchtxrAA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,33 @@
+CREATE OR REPLACE FUNCTION FN_VERIFICA_PRIMO_RET_BOO(P_NUMBER NUMBER)
+  RETURN NUMBER IS
+  v_sqrt     NUMBER;
+  v_dividend NUMBER := 3;
+BEGIN
+  IF P_NUMBER = 0 OR P_NUMBER = 1 THEN
+  
+    RETURN 0;
+  ELSIF P_NUMBER = 2 THEN
+  
+    RETURN 1;
+  
+  ELSIF MOD(P_NUMBER, 2) = 0 THEN
+  
+    RETURN 0;
+  
+  ELSE
+    v_sqrt := SQRT(P_NUMBER);
+    WHILE v_dividend <= v_sqrt LOOP
+      IF MOD(P_NUMBER, v_dividend) = 0 THEN
+      
+        RETURN 0;
+      
+      END IF;
+      v_dividend := (v_dividend + 2);
+    END LOOP;
+    IF v_dividend > v_sqrt THEN
+    
+      RETURN 1;
+    
+    END IF;
+  END IF;
+END FN_VERIFICA_PRIMO_RET_BOO;
