@@ -1,6 +1,8 @@
 import { Live } from './../../shared/model/live.model';
 import { LiveService } from './../../shared/service/live.service';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-live-list',
@@ -9,9 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveListComponent implements OnInit {
   livesPrevious: Live[];
+  livesNext: Live[];
 
   constructor(
-    public liveService: LiveService
+    public liveService: LiveService,
+    public sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +27,18 @@ export class LiveListComponent implements OnInit {
       data => {
         this.livesPrevious = data.content;
         console.log(this.livesPrevious);
+        this.livesPrevious.forEach((live) => {
+          live.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
+        });
+      }
+    );
+    this.liveService.getLivesWithFlag('next').subscribe(
+      data => {
+        this.livesNext = data.content;
+        console.log(this.livesNext);
+        this.livesNext.forEach((live) => {
+          live.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
+        });
       }
     );
   }
