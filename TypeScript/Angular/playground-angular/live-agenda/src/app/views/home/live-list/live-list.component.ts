@@ -1,8 +1,7 @@
-import { Live } from './../../shared/model/live.model';
-import { LiveService } from './../../shared/service/live.service';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { DomSanitizer } from '@angular/platform-browser';
+import { Live } from 'src/app/shared/model/live.model';
+import { LiveService } from 'src/app/shared/service/live.service';
 
 @Component({
   selector: 'app-live-list',
@@ -10,8 +9,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./live-list.component.css']
 })
 export class LiveListComponent implements OnInit {
-  livesPrevious: Live[];
-  livesNext: Live[];
+
+  livesPrevious: Live[] = [];
+  livesNext: Live[] = [];
+
+  next: Boolean = false;
+  previous: Boolean = false;
 
   constructor(
     public liveService: LiveService,
@@ -22,24 +25,26 @@ export class LiveListComponent implements OnInit {
     this.getLives();
   }
 
-  getLives(): void {
+  getLives() {
     this.liveService.getLivesWithFlag('previous').subscribe(
       data => {
         this.livesPrevious = data.content;
-        console.log(this.livesPrevious);
-        this.livesPrevious.forEach((live) => {
+        this.livesPrevious.forEach(live => {
           live.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
         });
+        this.previous = true;
       }
     );
+
     this.liveService.getLivesWithFlag('next').subscribe(
       data => {
         this.livesNext = data.content;
-        console.log(this.livesNext);
-        this.livesNext.forEach((live) => {
+        this.livesNext.forEach(live => {
           live.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(live.liveLink);
         });
+        this.next = true;
       }
     );
   }
+
 }

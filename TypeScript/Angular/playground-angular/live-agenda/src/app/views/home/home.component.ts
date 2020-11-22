@@ -1,6 +1,6 @@
-import { LiveFormDialogComponent } from './live-form-dialog/live-form-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { LiveFormDialogComponent } from './live-form-dialog/live-form-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,9 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }

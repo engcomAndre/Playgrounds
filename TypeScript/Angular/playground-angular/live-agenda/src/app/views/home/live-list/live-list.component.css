@@ -5,7 +5,8 @@
   padding-left: 0%;
   padding-right: 0%;
   padding-bottom: 0%;
-  margin: 5px;
+  width: fit-content;
+  flex-wrap: wrap;
 }
 
 .mat-card-title-live {

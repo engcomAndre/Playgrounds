@@ -1,33 +1,33 @@
-import { ResponsePageable } from './../model/responsepPageable.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Live } from '../model/live.model';
-
+import { ResponsePageable } from '../model/responsePageacle.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LiveService {
 
-  apiUrl = 'http://localhost:8081/lives';
+  apiUrl = 'http://localhost:8080/lives';
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-
     })
-  };
+  }
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpclient: HttpClient
+  ) { }
+
 
   public getLivesWithFlag(flag: string): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(
-      this.apiUrl + '?flag=' + flag
-    );
+    return this.httpclient.get<ResponsePageable>(this.apiUrl + '?flag=' + flag);
   }
 
   public postLives(live: any): Observable<Live> {
-    return this.httpClient.post<any>(this.apiUrl, live, this.httpOptions);
+    return this.httpclient.post<any>(this.apiUrl, live, this.httpOptions);
   }
+
 }
